@@ -1,0 +1,70 @@
+import math
+
+# Завдання 1
+def calculate_rectangle_area(width, height):
+    return width * height
+
+# Введення даних для трьох прямокутників
+rectangles = []
+for i in range(1, 4):
+    width = float(input(f"Введіть ширину {i}-го прямокутника: "))
+    height = float(input(f"Введіть висоту {i}-го прямокутника: "))
+    rectangles.append(calculate_rectangle_area(width, height))
+
+print("Площі прямокутників:", rectangles)
+
+# Завдання 2
+def calculate_hypotenuse(a, b):
+    return math.sqrt(a**2 + b**2)
+
+# Введення катетів для двох трикутників
+hypotenuses = []
+for i in range(1, 3):
+    a = float(input(f"Введіть перший катет {i}-го трикутника: "))
+    b = float(input(f"Введіть другий катет {i}-го трикутника: "))
+    hypotenuses.append(calculate_hypotenuse(a, b))
+
+print("Довжини гіпотенуз:", hypotenuses)
+print("Більша гіпотенуза:", max(hypotenuses))
+print("Менша гіпотенуза:", min(hypotenuses))
+
+# Завдання 3
+def is_inside_circle(x, y, a, b, R):
+"""Перевіряє, чи точка (x, y) лежить всередині кола"""
+    return (x - a)**2 + (y - b)**2 <= R**2
+
+# Введення даних кола
+a = float(input("Введіть координату a центра кола: "))
+b = float(input("Введіть координату b центра кола: "))
+R = float(input("Введіть радіус R кола: "))
+
+# Введення координат точок
+points = {'P': tuple(map(float, input("Введіть координати точки P (р1, р2): ").split(','))),
+          'F': tuple(map(float, input("Введіть координати точки F (f1, f2): ").split(','))),
+          'L': tuple(map(float, input("Введіть координати точки L (l1, l2): ").split(',')))}
+
+# Перевірка точок
+inside_count = sum(is_inside_circle(x, y, a, b, R) for x, y in points.values())
+print(f"Кількість точок всередині кола: {inside_count}")
+
+# Завдання 4
+def calculate_right_angle_quadrilateral_area(X, Y, Z, T):
+    # Площа за формулою Герона для прямокутника
+    semi_perimeter = (X + Y + Z + T) / 2
+    return math.sqrt((semi_perimeter - X) * (semi_perimeter - Y) * (semi_perimeter - Z) * (semi_perimeter - T))
+
+# Введення довжин сторін чотирикутника
+X = float(input("Введіть довжину сторони X: "))
+Y = float(input("Введіть довжину сторони Y: "))
+Z = float(input("Введіть довжину сторони Z: "))
+T = float(input("Введіть довжину сторони Т: "))
+
+print("Площа чотирикутника:", calculate_right_angle_quadrilateral_area(X, Y, Z, T))
+
+# Завдання 5
+n = int(input("Введіть число n: "))
+divisors = list(map(int, input("Введіть числа, на які повинні ділитися натуральні числа: ").split()))
+
+# Знаходження натуральних чисел
+natural_numbers = [i for i in range(1, n+1) if all(i % d == 0 for d in divisors)]
+print("Натуральні числа, що діляться на кожне з заданих чисел:", natural_numbers)
