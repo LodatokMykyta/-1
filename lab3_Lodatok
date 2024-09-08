@@ -1,0 +1,52 @@
+#Завдання 1
+class Car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.speed = 0
+
+    def accelerate(self):
+        self.speed += 5
+
+    def brake(self):
+        if self.speed > 0:
+            self.speed -= 5
+        else:
+            print("Автомобіль вже зупинений.")
+
+    def get_speed(self):
+        return self.speed
+
+# Створення об'єкта класу Car
+my_car = Car("Toyota", "Camry", 2023)
+
+# Прискорення
+for _ in range(5):
+    my_car.accelerate()
+    print(f"Поточна швидкість: {my_car.get_speed()} км/год")
+
+# Гальмування
+for _ in range(5):
+    my_car.brake()
+    print(f"Поточна швидкість: {my_car.get_speed()} км/год")
+#Завдання 2
+class Buffer:
+    def __init__(self):
+        self.buffer = []
+
+    def add(self, *a):
+        self.buffer.extend(a)
+        while len(self.buffer) >= 5:
+            current_part = self.buffer[:5]
+            self.buffer = self.buffer[5:]
+            print("Сума п'ятірки:", sum(current_part))
+
+    def get_current_part(self):
+        return self.buffer
+
+# Приклад використання
+buffer = Buffer()
+buffer.add(1, 2, 3)
+buffer.add(4, 5, 6, 7, 8)
+buffer.add(9, 10)
